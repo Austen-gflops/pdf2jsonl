@@ -15,8 +15,9 @@ def create_jsonl(content, filename):
     jsonl_data = ""
     for page, text in enumerate(content):
         if text:
-            jsonl_data += json.dumps({"page": page + 1, "text": text}) + "\n"
-    with open(filename, 'w') as f:
+            # Ensure JSON data is saved in UTF-8 encoding
+            jsonl_data += json.dumps({"page": page + 1, "text": text}, ensure_ascii=False) + "\n"
+    with open(filename, 'w', encoding='utf-8') as f:  # Write with UTF-8 encoding
         f.write(jsonl_data)
 
 def create_zip(files):
