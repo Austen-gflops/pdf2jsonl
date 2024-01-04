@@ -7,7 +7,7 @@ import os
 import datetime
 
 def process_pdf(file):
-    with fitz.open(stream=file.stream) as doc:
+    with fitz.open("pdf", file.getvalue()) as doc:  # Open the PDF directly from bytes
         text = [page.get_text() for page in doc]
     return text
 
